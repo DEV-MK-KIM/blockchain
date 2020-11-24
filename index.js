@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const Blockchain = require("./blockchain");
-const PubSub = require("./pubsub");
+const PubSub = require("./app/pubsub");
 const request = require("request");
 
 const app = express();
@@ -34,7 +34,7 @@ const syncChains = () => {
     (error, response, body) => {
       if (!error && response.statusCode === 200) {
         const rootChain = JSON.parse(body);
-
+ 
         console.log("replace chain on a sync with :>> ", rootChain);
         blockchain.replaceChain(rootChain);
       }
